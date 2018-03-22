@@ -5,10 +5,10 @@
 
 class MyCylinder extends CGFobject
 {
-	constructor(scene, slices, stacks){
+	constructor(scene){
 		super(scene);
-		this.slices = slices;
-		this.stacks = stacks;
+		this.slices = 20;
+		this.stacks = 5;
 		this.initBuffers();
 	}
 
