@@ -1,8 +1,9 @@
 /**
- * MyPrism
+ * MyCylinder
  * @constructor
  */
-class MyPrism extends CGFobject
+
+class MyCylinder extends CGFobject
 {
 	constructor(scene, slices, stacks){
 		super(scene);
@@ -25,7 +26,6 @@ class MyPrism extends CGFobject
 		alpha = (alpha * Math.PI)/180;
 
 		var sumalpha = 0;
-		var angNormal = alpha/2;
 
 		for (var j = 0; j < this.stacks; j++) {
 
@@ -33,23 +33,21 @@ class MyPrism extends CGFobject
 
                 //vertice 1 da face 0
                 this.vertices.push(Math.cos(sumalpha), Math.sin(sumalpha), j/this.stacks);
-                this.normals.push(Math.cos(angNormal), Math.sin(angNormal), 0);
+                this.normals.push(Math.cos(sumalpha), Math.sin(sumalpha), 0);
 
                 //vertice 1 da face 1
                 this.vertices.push(Math.cos(sumalpha), Math.sin(sumalpha), j+1/this.stacks);
-                this.normals.push(Math.cos(angNormal), Math.sin(angNormal), 0);
+                this.normals.push(Math.cos(sumalpha), Math.sin(sumalpha), 0);
 
                 sumalpha += alpha;
 
                 //vertice 2 da face 0
                 this.vertices.push(Math.cos(sumalpha), Math.sin(sumalpha), j/this.stacks);
-                this.normals.push(Math.cos(angNormal), Math.sin(angNormal), 0);
+                this.normals.push(Math.cos(sumalpha), Math.sin(sumalpha), 0);
 
                 //vertice 2 da face 1
                 this.vertices.push(Math.cos(sumalpha), Math.sin(sumalpha), j+1/this.stacks);
-                this.normals.push(Math.cos(angNormal), Math.sin(angNormal), 0);
-
-                angNormal += alpha;
+                this.normals.push(Math.cos(sumalpha), Math.sin(sumalpha), 0);
 
                 this.indices.push(i + 2);
                 this.indices.push(i + 1);
