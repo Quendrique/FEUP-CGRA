@@ -8,6 +8,8 @@
 	{
 		super(scene);
 
+        this.materialDefault = new CGFappearance(this);
+
 		//tampo material
 		this.materialA = new CGFappearance(scene);
 		this.materialA.setAmbient(109,57,27.3,1);
@@ -25,8 +27,11 @@
 		this.myUnitCubeQuad = new MyUnitCubeQuad(this.scene);
 	};
 
-	display() 
+	display()
 	{
+
+        this.materialDefault.apply();
+
 		// legs
 		this.scene.pushMatrix();
 		this.materialB.apply();

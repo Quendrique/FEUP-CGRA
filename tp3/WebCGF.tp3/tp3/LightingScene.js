@@ -36,7 +36,7 @@ class LightingScene extends CGFscene
 		this.boardA = new Plane(this, BOARD_A_DIVISIONS);
 		this.boardB = new Plane(this, BOARD_B_DIVISIONS);
 
-        this.lamp = new MyLamp(this, 6, 10);
+        this.lamp = new MyLamp(this, 60, 20);
         this.cylinder = new MyCylinder(this);
         this.prism = new MyPrism(this,6,2);
 
@@ -47,14 +47,13 @@ class LightingScene extends CGFscene
 		this.materialA.setAmbient(0.3,0.3,0.3,1);
 		this.materialA.setDiffuse(0.6,0.6,0.6,1);
 		this.materialA.setSpecular(0,0.2,0.8,1);
-		this.materialA.setShininess(120);
-		//this.materialA.loadTexture()
+		this.materialA.setShininess(20);
 
 		this.materialB = new CGFappearance(this);
-		this.materialB.setAmbient(0.3,0.3,0.3,1);
+		this.materialB.setAmbient(0.4,0.4,0.4,1);
 		this.materialB.setDiffuse(0.6,0.6,0.6,1);
 		this.materialB.setSpecular(0.8,0.8,0.8,1);	
-		this.materialB.setShininess(120);
+		this.materialB.setShininess(20);
 		
 	};
 
@@ -68,20 +67,19 @@ class LightingScene extends CGFscene
 		this.setGlobalAmbientLight(.5,.5,.5,1);
 		
 		// Positions for four lights
-		this.lights[0].setPosition(4, 6, 1, 1);
+		this.lights[0].setPosition(4, 8, 1, 1);
 		this.lights[0].setVisible(true); // show marker on light position (different from enabled)
 		
-		this.lights[1].setPosition(10.5, 6.0, 1.0, 1.0);
+		this.lights[1].setPosition(10.5, 8, 1.0, 1.0);
 		this.lights[1].setVisible(true); // show marker on light position (different from enabled)
 
-		this.lights[2].setPosition(10.5, 6.0, 5.0, 1.0);
+		this.lights[2].setPosition(10.5, 8, 5.0, 1.0);
 		this.lights[2].setVisible(true);
 
-		this.lights[3].setPosition(4, 6.0, 5.0, 1.0);
+		this.lights[3].setPosition(4, 8, 5.0, 1.0);
 		this.lights[3].setVisible(true);
 		
-		//this.lights[1].setVisible(true); // show marker on light position (different from enabled)
-		//this.lights[1].setVisible(true); // show marker on light position (different from enabled)
+
 
 		this.lights[0].setAmbient(0, 0, 0, 1);
 		this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
@@ -156,12 +154,16 @@ class LightingScene extends CGFscene
 		// ---- END Background, camera and axis setup
 
 		// ---- BEGIN Scene drawing section
-		
+		this.pushMatrix();
+        this.translate(7.25, 8, 3);
+        this.rotate(90 * degToRad, 1, 0, 0);
+        this.scale(2, 1.5, 1.5);
 		this.lamp.display();
-/*		this.cylinder.display();
-		this.prism.display();*/
+		this.popMatrix();
+		//this.cylinder.display();
+		//this.prism.display();
 
-	/*	// Floor
+		// Floor
 		this.pushMatrix();
 			this.translate(7.5, 0, 7.5);
 			this.rotate(-90 * degToRad, 1, 0, 0);
@@ -213,7 +215,7 @@ class LightingScene extends CGFscene
 			this.materialB.apply();
 			this.boardB.display();
 		this.popMatrix();
-*/
+
 		// ---- END Scene drawing section
 	};
 };
