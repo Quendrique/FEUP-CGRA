@@ -30,7 +30,7 @@
 	display()
 	{
 
-        this.materialDefault.apply();
+       // this.materialDefault.apply();
 
 		// legs
 		this.scene.pushMatrix();
