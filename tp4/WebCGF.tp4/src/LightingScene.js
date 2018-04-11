@@ -187,6 +187,14 @@ class LightingScene extends CGFscene
         this.scale(2, 1.5, 1.5);
         this.lamp.display();
         this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(1.3, 0, 10.2);
+        this.scale(1, 0.5, 1);
+        this.rotate(-90 * degToRad, 1, 0, 0);
+        this.cylinder.display();
+        this.popMatrix();
+
         //this.cylinder.display();
         //this.prism.display();
 
