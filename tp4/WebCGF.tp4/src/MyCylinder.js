@@ -5,12 +5,19 @@
 
 class MyCylinder extends CGFobject
 {
-	constructor(scene){
+	constructor(scene, minS, maxS, minT, maxT){
 		super(scene);
 		this.slices = 20;
-		this.stacks = 8;
+		this.stacks = 8; 
+
+		this.minS = minS || 0.0;
+        this.minT = minT || 0.0;
+        this.maxS = maxS || 1.0;
+        this.maxT = maxT || 1.0;
+
 		this.initBuffers();
 	}
+
 
 	initBuffers() 
 	{
@@ -18,9 +25,13 @@ class MyCylinder extends CGFobject
 		this.vertices = [];
 		this.normals = [];
 		this.indices = [];
+		this.texCoords = [];
 
 		//alpha in degrees
 		var alpha = 360/this.slices;
+
+		var stepS = (this.maxS-this.minS)/this.slices;
+        var stepT = (this.maxT-this.minT)/this.slices;
 
 		//convert to radian
 		alpha = (alpha * Math.PI)/180;
@@ -34,20 +45,24 @@ class MyCylinder extends CGFobject
                 //vertice 1 da face 0
                 this.vertices.push(Math.cos(sumalpha), Math.sin(sumalpha), j/this.stacks);
                 this.normals.push(Math.cos(sumalpha), Math.sin(sumalpha), 0);
+                this.texCoords.push(this.minS+i*stepS, this.maxT+j*stepT);
 
                 //vertice 1 da face 1
                 this.vertices.push(Math.cos(sumalpha), Math.sin(sumalpha), j+1/this.stacks);
                 this.normals.push(Math.cos(sumalpha), Math.sin(sumalpha), 0);
+                this.texCoords.push(this.maxS+i*stepS, this.maxT+j*stepT);
 
                 sumalpha += alpha;
 
                 //vertice 2 da face 0
                 this.vertices.push(Math.cos(sumalpha), Math.sin(sumalpha), j/this.stacks);
                 this.normals.push(Math.cos(sumalpha), Math.sin(sumalpha), 0);
+                this.texCoords.push(this.minS+i*stepS, this.minT+j*stepT);
 
                 //vertice 2 da face 1
                 this.vertices.push(Math.cos(sumalpha), Math.sin(sumalpha), j+1/this.stacks);
                 this.normals.push(Math.cos(sumalpha), Math.sin(sumalpha), 0);
+                this.texCoords.push(this.maxS+i*stepS, this.minT+j*stepT);
 
                 this.indices.push(i + 2);
                 this.indices.push(i + 1);

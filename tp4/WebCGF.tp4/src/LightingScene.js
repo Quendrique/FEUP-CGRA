@@ -40,7 +40,7 @@ class LightingScene extends CGFscene
         this.boardB = new Plane(this, BOARD_B_DIVISIONS);
 
         this.lamp = new MyLamp(this, 60, 20);
-        this.cylinder = new MyCylinder(this);
+        this.cylinder = new MyCylinder(this, -0.5, 1.5, -0.5, 1.5);
         this.prism = new MyPrism(this,6,2);
 
         // Materials
@@ -69,6 +69,21 @@ class LightingScene extends CGFscene
         this.boardAppearance.setDiffuse(0.2,0.2,0.2,1);
         this.boardAppearance.setSpecular(0.6,0.6,0.6,1);
         this.boardAppearance.setShininess(120);
+
+        this.columnAppearance = new CGFappearance(this);
+        this.columnAppearance.loadTexture("../resources/images/column.jpg");
+        this.columnAppearance.setDiffuse(0.2,0.2,0.2,1);
+        this.columnAppearance.setSpecular(0.6,0.6,0.6,1);
+        this.columnAppearance.setAmbient(0.4,0.4,0.4);
+        this.columnAppearance.setShininess(120);
+
+        
+        this.lampAppearance = new CGFappearance(this);
+        this.lampAppearance.loadTexture("../resources/images/lamp.jpg");
+        this.lampAppearance.setDiffuse(0.2,0.2,0.2,1);
+        this.lampAppearance.setSpecular(0.6,0.6,0.6,1);
+        this.lampAppearance.setAmbient(0.6,0.6,0.6);
+        this.lampAppearance.setShininess(120);
 
         this.materialB = new CGFappearance(this);
         this.materialB.setAmbient(0.4,0.4,0.4,1);
@@ -182,6 +197,7 @@ class LightingScene extends CGFscene
         this.materialDefault.apply();
 
         this.pushMatrix();
+        this.lampAppearance.apply();
         this.translate(7.25, 8, 3);
         this.rotate(90 * degToRad, 1, 0, 0);
         this.scale(2, 1.5, 1.5);
@@ -189,14 +205,38 @@ class LightingScene extends CGFscene
         this.popMatrix();
 
         this.pushMatrix();
-        this.translate(1.3, 0, 10.2);
-        this.scale(1, 0.5, 1);
+        this.columnAppearance.apply();
+        this.translate(1.3, 0, 13.5);
+        this.scale(1, 1.14, 1);
         this.rotate(-90 * degToRad, 1, 0, 0);
         this.cylinder.display();
         this.popMatrix();
 
-        //this.cylinder.display();
-        //this.prism.display();
+
+        this.pushMatrix();
+        this.columnAppearance.apply();
+        this.translate(1.3, 0, 1.3);
+        this.scale(1, 1.14, 1);
+        this.rotate(-90 * degToRad, 1, 0, 0);
+        this.cylinder.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.columnAppearance.apply();
+        this.translate(13.5, 0, 13.5);
+        this.scale(1, 1.14, 1);
+        this.rotate(-90 * degToRad, 1, 0, 0);
+        this.cylinder.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.columnAppearance.apply();
+        this.translate(13.5, 0, 1.3);
+        this.scale(1, 1.14, 1);
+        this.rotate(-90 * degToRad, 1, 0, 0);
+        this.cylinder.display();
+        this.popMatrix();
+
 
         // Floor
         this.pushMatrix();

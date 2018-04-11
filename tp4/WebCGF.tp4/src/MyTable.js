@@ -10,12 +10,13 @@ class MyTable extends CGFobject
 
         this.materialDefault = new CGFappearance(this.scene);
 
-		//tampo material
-		this.materialA = new CGFappearance(scene);
-		this.materialA.setAmbient(0.1,0.1,0.1,1);
-		this.materialA.setDiffuse(0.1,0.1,0.1,1);
-		this.materialA.setSpecular(0.304,0.1608,0.104,1);
-		this.materialA.setShininess(0);
+        //tampo material 
+        this.tableAppearence = new CGFappearance(scene); 
+        this.tableAppearence.setAmbient(0.1,0.1,0.1,0.1,1); 
+        this.tableAppearence.setDiffuse(0.2,0.2,0.2,1); 
+        this.tableAppearence.setSpecular(0.304,0.1608,0.104,0); 
+        this.tableAppearence.setShininess(0); 
+        this.tableAppearence.loadTexture('../resources/images/table.png'); 
 
 		//pernas material
 		this.materialB = new CGFappearance(scene);
@@ -29,8 +30,6 @@ class MyTable extends CGFobject
 
     display()
     {
-
-        // this.materialDefault.apply();
 
         // legs
         this.scene.pushMatrix();
