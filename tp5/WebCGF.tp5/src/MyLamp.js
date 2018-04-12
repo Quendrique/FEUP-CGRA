@@ -4,10 +4,16 @@
  */
 class MyLamp extends CGFobject
 {
-    constructor(scene, slices, stacks){
+    constructor(scene, slices, stacks, minS, maxS, minT, maxT){
         super(scene);
         this.slices = slices;
         this.stacks = stacks;
+
+        this.minS = minS || 0.0;
+        this.minT = minT || 0.0;
+        this.maxS = maxS || 1.0;
+        this.maxT = maxT || 1.0;
+
         this.initBuffers();
     }
 
@@ -17,6 +23,11 @@ class MyLamp extends CGFobject
         this.vertices = [];
         this.normals = [];
         this.indices = [];
+        this.texCoords = [];
+
+        var stepS = (this.maxS-this.minS)/this.slices;
+        var stepT = (this.maxT-this.minT)/this.slices;
+
 
         //alpha in degrees
         var alpha = 360/this.slices;
@@ -43,20 +54,24 @@ class MyLamp extends CGFobject
                 //vertice 1 da face 0
                 this.vertices.push(radiusBottom*Math.cos(sumalpha),radiusBottom*Math.sin(sumalpha), heightSum);
                 this.normals.push(radiusBottom*Math.cos(sumalpha), radiusBottom*Math.sin(sumalpha), 0);
+                this.texCoords.push(this.minS+i*stepS, this.maxT+j*stepT);
 
                 //vertice 1 da face 1
                 this.vertices.push(radiusTop*Math.cos(sumalpha), radiusTop*Math.sin(sumalpha), heightSum+stackHeight);
                 this.normals.push(radiusTop*Math.cos(sumalpha), radiusTop*Math.sin(sumalpha), 0);
+                this.texCoords.push(this.maxS+i*stepS, this.maxT+j*stepT);
 
                 sumalpha += alpha;
 
                 //vertice 2 da face 0
                 this.vertices.push(radiusBottom*Math.cos(sumalpha), radiusBottom*Math.sin(sumalpha), heightSum);
                 this.normals.push(radiusBottom*Math.cos(sumalpha),radiusBottom*Math.sin(sumalpha), 0);
+                this.texCoords.push(this.minS+i*stepS, this.minT+j*stepT);
 
                 //vertice 2 da face 1
                 this.vertices.push(radiusTop*Math.cos(sumalpha), radiusTop*Math.sin(sumalpha), heightSum+stackHeight);
                 this.normals.push(radiusTop*Math.cos(sumalpha), radiusTop*Math.sin(sumalpha), 0);
+                this.texCoords.push(this.maxS+i*stepS, this.minT+j*stepT);
 
                 this.indices.push(i + 2);
                 this.indices.push(i + 1);
