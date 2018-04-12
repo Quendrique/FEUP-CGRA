@@ -42,6 +42,7 @@ class LightingScene extends CGFscene
         this.lamp = new MyLamp(this, 60, 20);
         this.cylinder = new MyCylinder(this, -0.5, 1.5, -0.5, 1.5);
         this.prism = new MyPrism(this,6,2);
+        this.clockHand = new MyClockHand(this, 90);
 
         // Materials
         this.materialDefault = new CGFappearance(this);
@@ -291,6 +292,11 @@ class LightingScene extends CGFscene
 
         this.materialB.apply();
         this.boardB.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.clockHand.display();
+        this.translate(0, 1.5, 0);
         this.popMatrix();
 
         // ---- END Scene drawing section

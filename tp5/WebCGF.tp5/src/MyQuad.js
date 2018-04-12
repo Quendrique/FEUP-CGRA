@@ -43,7 +43,8 @@ class MyQuad extends CGFobject
 		]
 
 /*
-        this.texCoords = [0,0,
+        this.texCoords = [
+        	0,0,
             1,0,
             0,1,
             1,1
