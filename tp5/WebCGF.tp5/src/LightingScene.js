@@ -38,6 +38,7 @@ class LightingScene extends CGFscene
         this.floor = new MyQuad(this, 0, 10, 0, 12);
         this.boardA = new Plane(this, BOARD_A_DIVISIONS, -0.25, 1.25, 0 ,1);
         this.boardB = new Plane(this, BOARD_B_DIVISIONS);
+        this.clock = new MyClock(this);
 
         this.lamp = new MyLamp(this, 60, 20);
         this.cylinder = new MyCylinder(this, -0.5, 1.5, -0.5, 1.5);
@@ -288,11 +289,19 @@ class LightingScene extends CGFscene
         this.boardAppearance.apply();
         this.translate(10.5, 4.5, 0.2);
         this.scale(BOARD_WIDTH, BOARD_HEIGHT, 1);
-
-        this.materialB.apply();
         this.boardB.display();
+        this.popMatrix();
+
+        // Clock
+        this.pushMatrix();
+        this.slidesAppearance.apply();
+        this.translate(7.25, 7.25, 0.2);
+        this.scale(BOARD_WIDTH, BOARD_HEIGHT, 1);
+        this.clock.display();
         this.popMatrix();
 
         // ---- END Scene drawing section
     };
+
+    update(currTime)
 };
