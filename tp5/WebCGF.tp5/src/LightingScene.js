@@ -303,5 +303,5 @@ class LightingScene extends CGFscene
         // ---- END Scene drawing section
     };
 
-    update(currTime)
+
 };
