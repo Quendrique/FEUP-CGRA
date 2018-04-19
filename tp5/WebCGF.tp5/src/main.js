@@ -12,6 +12,8 @@ serialInclude([
 	'MyPrism.js',
 	'MyCylinder.js',
 	'MyLamp.js',
+	'MyClock.js',
+	'MyCircle.js',
 	'MyClockHand.js',
 
 	main=function() {
