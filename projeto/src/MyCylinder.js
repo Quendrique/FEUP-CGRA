@@ -7,7 +7,7 @@ class MyCylinder extends CGFobject
 {
 	constructor(scene, minS, maxS, minT, maxT){
 		super(scene);
-		this.slices = 12;
+		this.slices = 100;
 		this.stacks = 1;
 
 		this.minS = minS || 0.0;

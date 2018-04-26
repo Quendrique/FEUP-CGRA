@@ -28,6 +28,8 @@ class LightingScene extends CGFscene
         this.gl.depthFunc(this.gl.LEQUAL);
 
         this.axis = new CGFaxis(this);
+        this.wheel = new MyWheel(this);
+        this.cylinder = new MyCylinder(this);
 
         // Scene elements
 
@@ -114,6 +116,8 @@ class LightingScene extends CGFscene
         // ---- END Background, camera and axis setup
 
         // ---- BEGIN Scene drawing section
+
+        this.wheel.display();
 
         // ---- END Scene drawing section
     };
