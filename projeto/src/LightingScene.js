@@ -21,6 +21,8 @@ class LightingScene extends CGFscene
 
         this.initLights();
 
+        this.enableTextures(true);
+
         this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
         this.gl.clearDepth(100.0);
         this.gl.enable(this.gl.DEPTH_TEST);
@@ -35,6 +37,14 @@ class LightingScene extends CGFscene
 
         // Materials
         this.materialDefault = new CGFappearance(this);
+
+        // Textures
+        this.wheelAppearance = new CGFappearance(this);
+        this.wheelAppearance.loadTexture("../resources/images/tire.jpg");
+        this.wheelAppearance.setDiffuse(0.2,0.2,0.2,1);
+        this.wheelAppearance.setSpecular(0.6,0.6,0.6,1);
+        this.wheelAppearance.setAmbient(0.4,0.4,0.4);
+        this.wheelAppearance.setShininess(120);
 
     };
 
@@ -79,8 +89,6 @@ class LightingScene extends CGFscene
         this.lights[3].setSpecular(1,1,0,1);
         this.lights[2].setQuadraticAttenuation(0.2);
         this.lights[3].enable();
-
-
     };
 
     updateLights()
@@ -117,7 +125,10 @@ class LightingScene extends CGFscene
 
         // ---- BEGIN Scene drawing section
 
+        this.pushMatrix();
+        this.wheelAppearance.apply();
         this.wheel.display();
+        this.popMatrix();
 
         // ---- END Scene drawing section
     };
