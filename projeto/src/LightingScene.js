@@ -31,7 +31,6 @@ class LightingScene extends CGFscene
 
         this.axis = new CGFaxis(this);
         this.wheel = new MyWheel(this);
-        this.cylinder = new MyCylinder(this);
 
         // Scene elements
 

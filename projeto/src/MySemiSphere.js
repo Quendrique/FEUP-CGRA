@@ -1,8 +1,8 @@
 /**
- * MyLamp
+ * MySemiSphere
  * @constructor
  */
-class MyLamp extends CGFobject
+class MySemiSphere extends CGFobject
 {
     constructor(scene, slices, stacks, minS, maxS, minT, maxT){
         super(scene);
