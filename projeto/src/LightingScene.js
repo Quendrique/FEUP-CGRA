@@ -23,14 +23,30 @@ class LightingScene extends CGFscene
 
         this.enableTextures(true);
 
-        this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
+        this.gl.clearColor(0.65, 0.98, 0.88, 1.0);
         this.gl.clearDepth(100.0);
         this.gl.enable(this.gl.DEPTH_TEST);
         this.gl.enable(this.gl.CULL_FACE);
         this.gl.depthFunc(this.gl.LEQUAL);
+        this.Light1=false; 
+        this.Light2=false;
+        this.Light3=false;
+        this.Light4=false; 
+        this.speed=3;
+        
+        this.altimetry = [[ 2.0 , 3.0 , 2.0, 4.0, 2.5, 2.4, 2.3, 1.3 ],
+                         [ 2.0 , 3.0 , 2.0, 4.0, 7.5, 6.4, 4.3, 1.3 ],
+                         [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ],
+                         [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ],
+                         [ 0.0 , 0.0 , 2.0, 4.0, 2.5, 2.4, 0.0, 0.0 ],
+                         [ 0.0 , 0.0 , 2.0, 4.0, 3.5, 2.4, 0.0, 0.0 ],
+                         [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ],
+                         [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ],
+                         [ 2.0 , 3.0 , 2.0, 1.0, 2.5, 2.4, 2.3, 1.3 ]];        
 
         this.axis = new CGFaxis(this);
         this.wheel = new MyWheel(this);
+        this.terrain = new MyTerrain(this, 8, this.altimetry);
 
         // Scene elements
 
@@ -54,7 +70,7 @@ class LightingScene extends CGFscene
 
     initLights()
     {
-        this.setGlobalAmbientLight(0,0,0, 1.0);
+        this.setGlobalAmbientLight(0.6,0.6,0.6, 1.0);
 
         // Positions for four lights
         this.lights[0].setPosition(4, 6, 1, 1);
@@ -70,30 +86,92 @@ class LightingScene extends CGFscene
 
         this.lights[0].setAmbient(0, 0, 0, 1);
         this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
-        this.lights[0].setSpecular(1,1,0,1);
-        this.lights[0].enable();
+        this.lights[0].setSpecular(1,1,1,1);
 
         this.lights[1].setAmbient(0, 0, 0, 1);
         this.lights[1].setDiffuse(1.0, 1.0, 1.0, 1.0);
-        this.lights[1].enable();
-
+      
         this.lights[2].setAmbient(0, 0, 0, 1);
         this.lights[2].setDiffuse(1.0, 1.0, 1.0, 1.0);
         this.lights[2].setSpecular(1,1,1,1);
         this.lights[2].setLinearAttenuation(1);
-        this.lights[2].enable();
 
         this.lights[3].setAmbient(0, 0, 0, 1);
         this.lights[3].setDiffuse(1.0, 1.0, 1.0, 1.0);
-        this.lights[3].setSpecular(1,1,0,1);
+        this.lights[3].setSpecular(1,1,1,1);
         this.lights[2].setQuadraticAttenuation(0.2);
-        this.lights[3].enable();
     };
 
     updateLights()
     {
-        for (var i = 0; i < this.lights.length; i++)
+        for (var i = 0; i < this.lights.length; i++){
             this.lights[i].update();
+        }
+
+            if(this.Light1){
+                this.lights[0].enable();
+            } else {
+                this.lights[0].disable();
+            }
+
+            if(this.Light2){
+                this.lights[1].enable();
+            } else {
+                this.lights[1].disable();
+            }
+
+            if(this.Light3){
+                this.lights[2].enable();
+            } else {
+                this.lights[2].disable();
+            }
+
+            if(this.Light4){
+                this.lights[3].enable();
+            } else {
+                this.lights[3].disable();
+            }
+    }
+
+    Deactivate_Axis(){ 
+        this.axis = new CGFaxis(this, 0, 0);
+        console.log("Erasing axis..."); 
+    };
+
+    Activate_Axis(){
+       // Draw axis
+       this.axis = new CGFaxis(this);
+       this.axis.display();
+       console.log("Drawing axis...");  
+    }
+
+    checkKeys() {
+        var text="Keys pressed: ";
+        var keysPressed=false;
+
+        if (this.gui.isKeyPressed("KeyW")) {
+            text+=" W ";
+            keysPressed=true;
+        }
+
+        if (this.gui.isKeyPressed("KeyS")) {
+            text+=" S ";
+            keysPressed=true;
+        }
+
+        if (this.gui.isKeyPressed("KeyA")) {
+            text+=" A ";
+            keysPressed=true;
+        }
+
+        if (this.gui.isKeyPressed("KeyD")) {
+            text+=" D ";
+            keysPressed=true;
+        }
+
+        if (keysPressed) {
+            console.log(text);
+        }
     }
 
 
@@ -112,11 +190,14 @@ class LightingScene extends CGFscene
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
 
+        // Draw axis
+        this.axis.display();
+
         // Update all lights used
         this.updateLights();
 
-        // Draw axis
-        this.axis.display();
+        //check Keys
+        this.checkKeys();
 
         this.materialDefault.apply();
 
@@ -125,8 +206,9 @@ class LightingScene extends CGFscene
         // ---- BEGIN Scene drawing section
 
         this.pushMatrix();
-        this.wheelAppearance.apply();
-        this.wheel.display();
+        //this.wheelAppearance.apply();
+        //this.wheel.display();
+        this.terrain.display();
         this.popMatrix();
 
         // ---- END Scene drawing section

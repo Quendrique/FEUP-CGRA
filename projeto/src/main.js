@@ -14,11 +14,13 @@ serialInclude([
 	'MyCircle.js',
 	'MyWheel.js',
 	'MyVehicle.js',
+	'MyTerrain.js',
+	'MyInterface.js',
 
 	main=function() {
 		var app = new CGFapplication(document.body);
 		var myScene = new LightingScene();
-		var myInterface = new CGFinterface();
+		var myInterface = new MyInterface();
 
 		app.init();
 
