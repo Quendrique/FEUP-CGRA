@@ -53,14 +53,6 @@ class LightingScene extends CGFscene
         // Materials
         this.materialDefault = new CGFappearance(this);
 
-        // Textures
-        this.wheelAppearance = new CGFappearance(this);
-        this.wheelAppearance.loadTexture("../resources/images/tire.jpg");
-        this.wheelAppearance.setDiffuse(0.2,0.2,0.2,1);
-        this.wheelAppearance.setSpecular(0.6,0.6,0.6,1);
-        this.wheelAppearance.setAmbient(0.4,0.4,0.4);
-        this.wheelAppearance.setShininess(120);
-
     };
 
     initCameras()
@@ -206,9 +198,12 @@ class LightingScene extends CGFscene
         // ---- BEGIN Scene drawing section
 
         this.pushMatrix();
-        //this.wheelAppearance.apply();
-        //this.wheel.display();
         this.terrain.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(1, 5, 1);
+        this.wheel.display();
         this.popMatrix();
 
         // ---- END Scene drawing section
