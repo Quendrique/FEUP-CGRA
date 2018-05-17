@@ -6,8 +6,8 @@ class MySemiSphere extends CGFobject
 {
     constructor(scene, slices, stacks, minS, maxS, minT, maxT){
         super(scene);
-        this.slices = slices;
-        this.stacks = stacks;
+        this.slices = 20;
+        this.stacks = 20;
 
         this.minS = minS || 0.0;
         this.minT = minT || 0.0;
