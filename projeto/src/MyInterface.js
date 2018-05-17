@@ -40,7 +40,6 @@ class MyInterface extends CGFinterface {
 		//  http://workshop.chromeexperiments.com/examples/gui
 
 		this.gui = new dat.GUI();
-		
 
 		// add a button:
 		// the first parameter is the object that is being controlled (in this case the scene)
@@ -63,6 +62,15 @@ class MyInterface extends CGFinterface {
 		group.add(this.scene, 'Light2');
 		group.add(this.scene, 'Light3');
 		group.add(this.scene, 'Light4');
+
+		//adding textures part
+		var othergroup=this.gui.addFolder("CarTextures");
+		othergroup.open();
+
+		othergroup.add(this.scene, 'bubble');
+		othergroup.add(this.scene, 'red');
+		othergroup.add(this.scene, 'camo');
+		othergroup.add(this.scene, 'tiger');
 
 		// add a slider
 		// must be a numeric variable of the scene, initialized in scene.init e.g.
