@@ -81,7 +81,7 @@ class MyInterface extends CGFinterface {
     	CarTextures: 'CarTextures'
 		}
 
-		this.gui.add(text, 'CarTextures', { Bubble: 'bubble', Red: 'red', Camo: 'camo', Tiger: 'tiger' });
+		this.gui.add(text, 'CarTextures', { Bubble: 'bubble', Red: 'red', Camo: 'camo', Tiger: 'tiger', Default: 'default' });
 
 		this.dropdown = text;
 

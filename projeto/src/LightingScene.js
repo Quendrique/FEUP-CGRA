@@ -102,6 +102,7 @@ class LightingScene extends CGFscene
         this.vehicleAppearanceList.push(['red', 1]);
         this.vehicleAppearanceList.push(['camo', 2]);
         this.vehicleAppearanceList.push(['tiger', 3]);
+        this.vehicleAppearanceList.push(['default', -1]);
     
         this.currVehicleAppearance = -1;
     };
