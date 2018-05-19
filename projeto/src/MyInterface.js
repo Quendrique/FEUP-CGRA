@@ -1,13 +1,13 @@
  
 class MyInterface extends CGFinterface {
 
-
 	/**
 	 * MyInterface
 	 * @constructor
 	 */
- 	constructor () {
+ 	constructor (selection) {
  		super();
+ 		this.selection = selection;
  	}
 
  	initKeys() {
@@ -27,6 +27,10 @@ class MyInterface extends CGFinterface {
 	isKeyPressed(keyCode) {
 		return this.activeKeys[keyCode] || false;
 	};
+
+	getCurrentSelection(){
+		return this.selection;
+	}
 	
 	/**
 	 * init
@@ -64,13 +68,22 @@ class MyInterface extends CGFinterface {
 		group.add(this.scene, 'Light4');
 
 		//adding textures part
-		var othergroup=this.gui.addFolder("CarTextures");
+		/*var othergroup=this.gui.addFolder("CarTextures");
 		othergroup.open();
 
 		othergroup.add(this.scene, 'bubble');
 		othergroup.add(this.scene, 'red');
 		othergroup.add(this.scene, 'camo');
-		othergroup.add(this.scene, 'tiger');
+		othergroup.add(this.scene, 'tiger');*/
+
+		var text =
+		{
+    	CarTextures: 'CarTextures'
+		}
+
+		this.gui.add(text, 'CarTextures', { Bubble: 'bubble', Red: 'red', Camo: 'camo', Tiger: 'tiger' });
+
+		this.dropdown = text;
 
 		// add a slider
 		// must be a numeric variable of the scene, initialized in scene.init e.g.
@@ -83,6 +96,5 @@ class MyInterface extends CGFinterface {
 
 		return true;
 	};
-
 };
 

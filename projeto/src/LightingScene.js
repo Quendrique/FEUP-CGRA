@@ -28,14 +28,17 @@ class LightingScene extends CGFscene
         this.gl.enable(this.gl.DEPTH_TEST);
         this.gl.enable(this.gl.CULL_FACE);
         this.gl.depthFunc(this.gl.LEQUAL);
+
         this.Light1=false; 
         this.Light2=false;
         this.Light3=false;
         this.Light4=false; 
-        this.bubble=false;
+
+       /* this.bubble=false;
         this.red=false;
         this.tiger=false;
-        this.camo=false;
+        this.camo=false;*/
+
         this.speed=3;
         
         this.altimetry = [[ 2.0 , 3.0 , 2.0, 4.0, 2.5, 2.4, 2.3, 0.0, 1.2 ],
@@ -144,37 +147,17 @@ class LightingScene extends CGFscene
 
     updateCarTexture(){
         var currentIndex = -1;
+       
+        for(var i = 0; i < this.vehicleAppearanceList.length; i++){
 
-        if(this.red){
-            for(var i = 0; i < this.vehicleAppearanceList.length; i++){
-                if(this.vehicleAppearanceList[i][0] == 'red'){
-                    currentIndex = this.vehicleAppearanceList[i][1];
-                }
+            if(this.gui.gui.__controllers[2].__select.selectedOptions[0] != null){
+                var option_user_selection = this.gui.gui.__controllers[2].__select.selectedOptions[0].value;
             }
-        }
-
-        if(this.tiger){
-            for(var i = 0; i < this.vehicleAppearanceList.length; i++){
-                if(this.vehicleAppearanceList[i][0] == 'tiger'){
-                    currentIndex = this.vehicleAppearanceList[i][1];
-                }
+            
+            if(this.vehicleAppearanceList[i][0] == option_user_selection){
+                currentIndex = this.vehicleAppearanceList[i][1];
             }
-        }
-
-        if(this.camo){
-            for(var i = 0; i < this.vehicleAppearanceList.length; i++){
-                if(this.vehicleAppearanceList[i][0] == 'camo'){
-                    currentIndex = this.vehicleAppearanceList[i][1];
-                }
-            }
-        }
-
-        if(this.bubble){
-            for(var i = 0; i < this.vehicleAppearanceList.length; i++){
-                if(this.vehicleAppearanceList[i][0] == 'bubble'){
-                    currentIndex = this.vehicleAppearanceList[i][1];
-                }
-            }
+            
         }
 
         this.currVehicleAppearance = currentIndex;
