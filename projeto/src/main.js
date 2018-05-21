@@ -19,6 +19,7 @@ serialInclude([
 	'MyTrapezoid.js',
 	'MyCar.js',
 	'MyHeadlight.js',
+	'MyMirror.js',
 
 	main=function() {
 		var app = new CGFapplication(document.body);

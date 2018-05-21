@@ -23,7 +23,7 @@ class LightingScene extends CGFscene
 
         this.enableTextures(true);
 
-        this.gl.clearColor(0.65, 0.98, 0.88, 1.0);
+        this.gl.clearColor(0, 0, 0, 1.0);
         this.gl.clearDepth(100.0);
         this.gl.enable(this.gl.DEPTH_TEST);
         this.gl.enable(this.gl.CULL_FACE);
@@ -270,9 +270,9 @@ class LightingScene extends CGFscene
 
         // ---- BEGIN Scene drawing section
 
-        this.pushMatrix();
+/*        this.pushMatrix();
         this.terrain.display();
-        this.popMatrix();
+        this.popMatrix();*/
 
         this.pushMatrix();
         
@@ -280,7 +280,7 @@ class LightingScene extends CGFscene
             this.vehicleAppearances [this.currVehicleAppearance].apply();
         }
     
-        this.translate(-4,2.5,0);
+        //this.translate(-4,2.5,0);
         this.car.display();
         this.popMatrix();
 

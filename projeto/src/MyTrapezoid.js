@@ -20,7 +20,7 @@ class MyTrapezoid extends CGFobject {
         this.angleWidthBack = 0;
         this.angleDepthRight = 0;
         this.angleDepthLeft = 0;
-        
+
         if (this.topWidth <= this.baseWidth) {
             this.angleWidthFront = ((90 * Math.PI)/180) - Math.atan(this.height/((this.baseWidth-this.topWidth)/2));
             this.angleWidthBack = Math.PI - ((90 * Math.PI)/180) - Math.atan(this.height/((this.baseWidth-this.topWidth)/2));
@@ -30,11 +30,11 @@ class MyTrapezoid extends CGFobject {
         }
 
         if (this.topDepth <= this.baseDepth) {
-            this.angleDepthRight = ((90 * Math.PI)/180) - Math.atan(this.height/((this.baseWidth-this.topWidth)/2));
-            this.angleDepthLeft = Math.PI - ((90 * Math.PI)/180) - Math.atan(this.height/((this.baseWidth-this.topWidth)/2));
+            this.angleDepthRight = ((90 * Math.PI)/180) - Math.atan(this.height/((this.baseDepth-this.topDepth)/2));
+            this.angleDepthLeft = Math.PI - ((90 * Math.PI)/180) - Math.atan(this.height/((this.baseDepth-this.topDepth)/2));
         } else {
-            this.angleDepthRight = -(((90 * Math.PI)/180) - Math.atan(this.height/((this.topWidth-this.baseWidth)/2)));
-            this.angleDepthLeft = -Math.PI + (((90 * Math.PI)/180) - Math.atan(this.height/((this.topWidth-this.baseWidth)/2)));
+            this.angleDepthRight = -(((90 * Math.PI)/180) - Math.atan(this.height/((this.topDepth-this.baseDepth)/2)));
+            this.angleDepthLeft = -Math.PI + (((90 * Math.PI)/180) - Math.atan(this.height/((this.topDepth-this.baseDepth)/2)));
         }
 
         this.xWidthFront = Math.cos(this.angleWidthFront);
@@ -90,7 +90,7 @@ class MyTrapezoid extends CGFobject {
         ];
 
         this.normals = [
-            this.xWidthBack, this.yWidthBack, 0, //0
+            -this.xWidthBack, this.yWidthBack, 0, //0
             0, 1, 0, //1
             0, this.yDepthLeft, this.zDepthLeft, //2
             this.xWidthFront, this.yWidthFront, 0, //3
@@ -100,22 +100,22 @@ class MyTrapezoid extends CGFobject {
             0, -1, 0, //7
 
             0, this.yDepthLeft, this.zDepthLeft, //8
-            this.xWidthFront, this.yWidthBack, 0, //9
+            -this.xWidthFront, this.yWidthBack, 0, //9
             0, -1, 0, //10
-            0, this.yDepthLeft, this.zDepthRight, //11
-            this.xWidthBack, this.yWidthBack, 0, //12
+            0, this.yDepthLeft, this.zDepthLeft, //11
+            -this.xWidthBack, this.yWidthBack, 0, //12
             0, 1, 0, //13
-            0, this.yDepthRight, this.zDepthRight, //14
+            0, this.yDepthRight, -this.zDepthRight, //14
             this.xWidthFront, this.yWidthFront, 0, //15
 
             0, 1, 0, //16
-            0, this.yDepthRight, this.zDepthRight, //17
+            0, this.yDepthRight, -this.zDepthRight, //17
             this.xWidthFront, this.yWidthFront, 0, //18
             0, -1, 0, //19
-            0, this.yDepthRight, this.zDepthRight, //20
-            this.xWidthBack, this.yWidthBack, 0, //21
+            0, this.yDepthRight, -this.zDepthRight, //20
+            -this.xWidthBack, this.yWidthBack, 0, //21
             0, -1, 0, //22
-            0, this.yDepthRight, this.zDepthRight //23
+            0, this.yDepthRight, -this.zDepthRight //23
         ];
 
         this.indices = [
@@ -145,30 +145,30 @@ class MyTrapezoid extends CGFobject {
         ];
 
         this.texCoords = [
-            0,1,
-            1,1,
-            0,0,
-            1,1,
-            0,1,
-            1,0,
-            1,0,
-            0,0,
-            1,1,
-            0,0,
-            1,0,
-            0,1,
-            1,1,
-            0,1,
-            0,1,
-            0,1,
-            1,1,
-            1,1,
-            0,0,
-            1,0,
-            1,0,
-            1,0,
-            0,0,
-            0,0
+            0,1, //0
+            1,1, //1
+            0,0, //2
+            1,1, //3
+            0,1, //4
+            1,0, //5
+            1,0, //6
+            0,0, //7
+            1,1, //8
+            0,0, //9
+            1,0, //10
+            0,1, //11
+            1,1, //12
+            0,1, //13
+            0,1, //14
+            0,1, //15
+            1,1, //16
+            1,1, //17
+            0,0, //18
+            1,0, //19
+            1,0, //20
+            1,0, //21
+            0,0, //22
+            0,0 //23
         ];
 
         this.primitiveType=this.scene.gl.TRIANGLES;
