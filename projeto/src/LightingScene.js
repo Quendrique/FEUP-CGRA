@@ -89,12 +89,20 @@ class LightingScene extends CGFscene
         this.vehicleAppearance4.setAmbient(0.6,0.6,0.6);
         this.vehicleAppearance4.setShininess(120);
 
+        this.vehicleAppearance5 = new CGFappearance(this);
+        this.vehicleAppearance5.loadTexture("../resources/images/simetryTest.jpg");
+        this.vehicleAppearance5.setDiffuse(0.5,0.5,0.5,1);
+        this.vehicleAppearance5.setSpecular(0.6,0.6,0.6,1);
+        this.vehicleAppearance5.setAmbient(0.6,0.6,0.6);
+        this.vehicleAppearance5.setShininess(120);
+
         this.vehicleAppearances = [];
 
         this.vehicleAppearances.push(this.vehicleAppearance1);
         this.vehicleAppearances.push(this.vehicleAppearance2);
         this.vehicleAppearances.push(this.vehicleAppearance3);
         this.vehicleAppearances.push(this.vehicleAppearance4);
+        this.vehicleAppearances.push(this.vehicleAppearance5);
 
         this.vehicleAppearanceList = [];
 
@@ -102,6 +110,7 @@ class LightingScene extends CGFscene
         this.vehicleAppearanceList.push(['red', 1]);
         this.vehicleAppearanceList.push(['camo', 2]);
         this.vehicleAppearanceList.push(['tiger', 3]);
+        this.vehicleAppearanceList.push(['sym', 4]);
         this.vehicleAppearanceList.push(['default', -1]);
     
         this.currVehicleAppearance = -1;
