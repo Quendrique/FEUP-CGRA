@@ -54,9 +54,9 @@ class MyCrane extends CGFobject
         if(this.movCar) {
             this.scene.rotate(this.baseangle - Math.PI, 0, 1, 0);
             this.scene.translate(7*Math.cos(this.armangle), -7*Math.sin(this.armangle), 0);
-            this.scene.translate(-7*Math.cos(0.25), 7*Math.sin(0.25), 0);
+            this.scene.translate(-7*Math.cos(0.15), 7*Math.sin(0.15), 0);
         }
-        this.scene.translate(14, 0, 0);
+        this.scene.translate(14, 0.85, 0);
         this.scene.rotate(this.scene.car.getSteer(), 0, 1, 0);
         this.car.display();
         this.scene.popMatrix();
@@ -118,7 +118,7 @@ class MyCrane extends CGFobject
                 this.count++;
             }
         } else if (this.count == 1) {
-            if(this.armangle < 0.25) {
+            if(this.armangle < 0.15) {
                 this.armangle = this.armangle + step;
             } else
                 this.count++;
@@ -141,7 +141,7 @@ class MyCrane extends CGFobject
                 this.count++;
             } 
         } else if (this.count == 5) {
-            if(this.armangle < 0.3) {
+            if(this.armangle < 0.15) {
                 this.armangle = this.armangle + step;
             } else {
                 this.count++; 
