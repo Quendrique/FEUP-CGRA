@@ -17,10 +17,10 @@ class MyTerrain extends CGFobject{
 
 	display(){
 	    this.scene.pushMatrix();
-	    this.floorAppearance.apply();
-	    this.scene.rotate(-90*degToRad,1,0,0);
-	    this.scene.scale(50, 50, 1);
-	    this.terrain.display();
+			this.floorAppearance.apply();
+			this.scene.rotate(-90*degToRad,1,0,0);
+			this.scene.scale(50, 50, 1);
+			this.terrain.display();
 	    this.scene.popMatrix();
 	}
 

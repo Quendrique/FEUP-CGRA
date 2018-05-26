@@ -25,8 +25,12 @@ class MySemiSphere extends CGFobject
         this.indices = [];
         this.texCoords = [];
 
-        var stepS = (this.maxS-this.minS)/this.slices;
-        var stepT = (this.maxT-this.minT)/this.slices;
+        //texture coordinates
+        var texS = 0;
+        var texIncS = 1/this.slices;
+        var texIncT = 1/this.stacks;
+        var prevTexT = 0;
+        var nextTexT = 0;
 
 
         //alpha in degrees
@@ -46,6 +50,9 @@ class MySemiSphere extends CGFobject
         var heightSum = 0;
 
         for (var j = 0; j < this.stacks; j++) {
+
+            nextTexT += texIncT;
+
             for (var i = j*this.slices*4; i < (j+1)*this.slices*4; i += 4) {
 
                 //calculating the radius of the top
@@ -54,24 +61,25 @@ class MySemiSphere extends CGFobject
                 //vertice 1 da face 0
                 this.vertices.push(radiusBottom*Math.cos(sumalpha),radiusBottom*Math.sin(sumalpha), heightSum);
                 this.normals.push(radiusBottom*Math.cos(sumalpha), radiusBottom*Math.sin(sumalpha), 0);
-                this.texCoords.push(this.minS+i*stepS, this.maxT+j*stepT);
+                this.texCoords.push(texS, prevTexT);
 
                 //vertice 1 da face 1
                 this.vertices.push(radiusTop*Math.cos(sumalpha), radiusTop*Math.sin(sumalpha), heightSum+stackHeight);
                 this.normals.push(radiusTop*Math.cos(sumalpha), radiusTop*Math.sin(sumalpha), 0);
-                this.texCoords.push(this.maxS+i*stepS, this.maxT+j*stepT);
+                this.texCoords.push(texS, nextTexT);
 
                 sumalpha += alpha;
+                texS += texIncS;
 
                 //vertice 2 da face 0
                 this.vertices.push(radiusBottom*Math.cos(sumalpha), radiusBottom*Math.sin(sumalpha), heightSum);
                 this.normals.push(radiusBottom*Math.cos(sumalpha),radiusBottom*Math.sin(sumalpha), 0);
-                this.texCoords.push(this.minS+i*stepS, this.minT+j*stepT);
+                this.texCoords.push(texS, prevTexT);
 
                 //vertice 2 da face 1
                 this.vertices.push(radiusTop*Math.cos(sumalpha), radiusTop*Math.sin(sumalpha), heightSum+stackHeight);
                 this.normals.push(radiusTop*Math.cos(sumalpha), radiusTop*Math.sin(sumalpha), 0);
-                this.texCoords.push(this.maxS+i*stepS, this.minT+j*stepT);
+                this.texCoords.push(texS, nextTexT);
 
                 this.indices.push(i + 2);
                 this.indices.push(i + 1);
@@ -85,6 +93,8 @@ class MySemiSphere extends CGFobject
             sumalpha = 0;
             radiusBottom = radiusTop;
             heightSum += stackHeight;
+            texS = 0;
+            prevTexT = nextTexT;
 
         }
 

@@ -6,13 +6,14 @@
 
 class MyTrapezoid extends CGFobject {
 
-    constructor(scene, height, topWidth, baseWidth, topDepth, baseDepth) {
+    constructor(scene, height, topWidth, baseWidth, topDepth, baseDepth, planeDivs) {
         super(scene);
         this.height = height || 1;
         this.topWidth = topWidth || 1;
         this.baseWidth = baseWidth || 1;
         this.topDepth = topDepth || 1;
         this.baseDepth = baseDepth || 1;
+        this.planeDivs = planeDivs || 20;
 
         //angles used to calculate normals
 
@@ -52,6 +53,11 @@ class MyTrapezoid extends CGFobject {
     }
 
     initBuffers() {
+
+        this.vertices = [];
+        this.normals = [];
+        this.texCoords = [];
+        this.indices = [];
 
         //each vertex is shared by three faces, hence the duplicates
 
@@ -145,30 +151,30 @@ class MyTrapezoid extends CGFobject {
         ];
 
         this.texCoords = [
-            0,1, //0
-            1,1, //1
+            1,0, //0 -> 0
+            0,0, //1
             0,0, //2
-            1,1, //3
+            0,0, //3 -> 1
             0,1, //4
             1,0, //5
-            1,0, //6
-            0,0, //7
+            0,1, //6 -> 2
+            1,0, //7 X
             1,1, //8
-            0,0, //9
-            1,0, //10
+            1,1, //9 -> 3
+            1,1, //10 X
             0,1, //11
-            1,1, //12
-            0,1, //13
-            0,1, //14
-            0,1, //15
+            0,0, //12 -> 4
+            1,0, //13
+            1,0, //14
+            1,0, //15 -> 5
             1,1, //16
-            1,1, //17
-            0,0, //18
-            1,0, //19
-            1,0, //20
-            1,0, //21
-            0,0, //22
-            0,0 //23
+            0,0, //17
+            1,1, //18 -> 6
+            0,0, //19 X
+            0,1, //20
+            0,1, //21 -> 7
+            0,1, //22 X
+            1,1 //23
         ];
 
         this.primitiveType=this.scene.gl.TRIANGLES;

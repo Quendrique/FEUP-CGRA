@@ -68,20 +68,13 @@ class MyInterface extends CGFinterface {
 		group.add(this.scene, 'Light4');
 
 		//adding textures part
-		/*var othergroup=this.gui.addFolder("CarTextures");
-		othergroup.open();
-
-		othergroup.add(this.scene, 'bubble');
-		othergroup.add(this.scene, 'red');
-		othergroup.add(this.scene, 'camo');
-		othergroup.add(this.scene, 'tiger');*/
 
 		var text =
 		{
     	CarTextures: 'CarTextures'
 		}
 
-		this.gui.add(text, 'CarTextures', { Bubble: 'bubble', Red: 'red', Camo: 'camo', Tiger: 'tiger', NotSymmetric: 'sym', Normal: 'default' });
+		this.gui.add(text, 'CarTextures', { Bubble: 'bubble', Best: 'best', Camo: 'camo', Tiger: 'tiger', Normal: 'default' });
 
 		this.dropdown = text;
 

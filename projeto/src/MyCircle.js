@@ -26,12 +26,9 @@ class MyCircle extends CGFobject
         for(var i = 0; i <= 100; i++) {
             this.vertices.push(Math.cos(angle), Math.sin(angle), 0);
             this.texCoords.push(0.5*Math.cos(angle)+0.5, 0.5 - 0.5*Math.sin(angle));
-
-            angle += 2*Math.PI / 100; 
-
-            /*this.indices.push(0, (i+1)%12, (i+2)%12);*/
             this.normals.push(0, 0, 1);
 
+            angle += 2*Math.PI / 100;
         }
 
         for (var i = 0; i < 99; i++) {

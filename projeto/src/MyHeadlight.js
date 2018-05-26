@@ -23,15 +23,13 @@ class MyHeadlight extends CGFobject
 
         //body
         this.scene.pushMatrix();
-        this.scene.scale(0.1, 0.1, 0.1);
-        this.body.display();
+            this.scene.scale(0.1, 0.1, 0.1);
+            this.body.display();
         this.scene.popMatrix();
 
         //face
         this.scene.pushMatrix();
-        this.scene.scale(0.1, 0.1, 0.1);
-        this.scene.translate(0,0,1);
-        this.top.display();
+            this.scene.scale
         this.scene.popMatrix();
 
 
